@@ -18,4 +18,4 @@ Route::get('/', function () {
 Route::get('/blogposts', 'BlogpostsController@index');
 Route::post('/blogposts/newblog', 'BlogpostsController@postCreate');
 Route::get('/blogposts/newblog', 'BlogpostsController@create');
-Route::get('/blogposts/blogpost/{id}', 'BlogpostsController@blogpost');
+Route::get('/blogposts/blogpost/{id}', 'BlogpostsController@blogpost')->name('blogposts.blogpost');

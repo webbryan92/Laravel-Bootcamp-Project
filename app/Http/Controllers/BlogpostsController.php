@@ -19,9 +19,9 @@ class BlogpostsController extends Controller
 
     public function blogpost(Blogpost $blogpost)
     {
-        $blogpost->first_name = 'Bob';
-        dd($blogpost);
-        return view('blogposts/blogpost', compact('blogpost'));
+        return view('blogposts/blogpost', [
+            'blogpost' => $blogpost
+        ]);
     }
 
     public function create()
