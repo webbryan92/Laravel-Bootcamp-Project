@@ -16,4 +16,6 @@ Route::get('/', function () {
 });
 
 Route::get('/blogposts', 'BlogpostsController@index');
-Route::get('/blogposts/create', 'BlogpostsController@create');
+Route::post('/blogposts/newblog', 'BlogpostsController@postCreate');
+Route::get('/blogposts/newblog', 'BlogpostsController@create');
+Route::get('/blogposts/blogpost/{id}', 'BlogpostsController@blogpost');

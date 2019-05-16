@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Blogpost;
 use Illuminate\Http\Request;
 
 class BlogpostsController extends Controller
@@ -9,10 +10,18 @@ class BlogpostsController extends Controller
     public function index()
 
     {
+        $blogposts = Blogpost::all();
 
-        $blogposts = \App\Blogpost::all();
+        return view('blogposts/index', [
+            'blogposts' => $blogposts
+        ]);
+    }
 
-        return view('blogposts.index', compact('blogposts'));
+    public function blogpost(Blogpost $blogpost)
+    {
+        $blogpost->first_name = 'Bob';
+        dd($blogpost);
+        return view('blogposts/blogpost', compact('blogpost'));
     }
 
     public function create()
@@ -24,11 +33,12 @@ class BlogpostsController extends Controller
     public function postCreate(Request $request)
     {
         $blogpost = new Blogpost();
+        $blogpost->slug = "placeholder";
         $blogpost->fill(
             $request->except('_token')
         )->save();
 
-        return redirect('/register')
+        return redirect('/blogposts')
             ->with('success', 'New blogpost created!');
     }
 }
