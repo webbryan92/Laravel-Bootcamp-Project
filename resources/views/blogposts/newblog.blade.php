@@ -9,6 +9,7 @@
 
     <h1>Create a New Blog Post</h1>
     <br>
+
     <form method="post">
         @csrf
         <div class="form-group">

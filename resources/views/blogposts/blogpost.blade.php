@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'TODO dynamic title' )
+@section('title', $blogpost->title )
 
 @section('content')
     <div class="container">
