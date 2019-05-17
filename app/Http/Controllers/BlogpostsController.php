@@ -17,6 +17,36 @@ class BlogpostsController extends Controller
         ]);
     }
 
+    public function blogGeneral()
+
+    {
+        $blogposts = Blogpost::all()->where('category', 'General');
+
+        return view('blogposts/index', [
+            'blogposts' => $blogposts
+        ]);
+    }
+
+    public function blogGunpla()
+
+    {
+        $blogposts = Blogpost::all()->where('category', 'Gunpla');
+
+        return view('blogposts/index', [
+            'blogposts' => $blogposts
+        ]);
+    }
+
+    public function blogGames()
+
+    {
+        $blogposts = Blogpost::all()->where('category', 'Games');
+
+        return view('blogposts/index', [
+            'blogposts' => $blogposts
+        ]);
+    }
+
     public function blogpost(Blogpost $blogpost)
     {
         return view('blogposts/blogpost', [

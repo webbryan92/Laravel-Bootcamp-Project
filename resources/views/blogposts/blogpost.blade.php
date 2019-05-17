@@ -12,6 +12,8 @@
                     <span class="meta">Posted
                     on {{ $blogpost->created_at }}</span>
                 </div>
+                <br>
+                <p>{{ $blogpost->body }}</p>
             </div>
         </div>
     </div>

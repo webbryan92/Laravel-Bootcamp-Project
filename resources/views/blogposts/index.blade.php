@@ -6,6 +6,7 @@
     @foreach ($blogposts as $blogpost)
         <div class="card" style="width: 18rem; display: inline-block;">
             <div class="card-body">
+                <h6 class="card-subtitle text-muted float-right">{{ $blogpost->category }}</h6>
                 <h5 class="card-title">{{ $blogpost->title }}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">{{ $blogpost->description }}</h6>
                 <p class="card-text">{{ Str::limit($blogpost->body, 50) }}</p>

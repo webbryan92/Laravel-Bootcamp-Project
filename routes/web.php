@@ -18,4 +18,8 @@ Route::get('/', function () {
 Route::get('/blogposts', 'BlogpostsController@index');
 Route::post('/blogposts/newblog', 'BlogpostsController@postCreate');
 Route::get('/blogposts/newblog', 'BlogpostsController@create');
-Route::get('/blogposts/blogpost/{id}', 'BlogpostsController@blogpost')->name('blogposts.blogpost');
+Route::get('/blogposts/general', 'BlogpostsController@blogGeneral');
+Route::get('/blogposts/gunpla', 'BlogpostsController@blogGunpla');
+Route::get('/blogposts/games', 'BlogpostsController@blogGames');
+Route::get('/blogposts/{blogpost}', 'BlogpostsController@blogpost')->name('blogposts.blogpost');
+Route::get('/blogposts/{blogpost}/edit', 'BlogpostsController@edit');
