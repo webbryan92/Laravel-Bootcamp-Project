@@ -47,7 +47,7 @@ class BlogpostsController extends Controller
         ]);
     }
 
-    public function blogpost(Blogpost $blogpost)
+    public function show(Blogpost $blogpost)
     {
         return view('blogposts/blogpost', [
             'blogpost' => $blogpost
@@ -58,6 +58,34 @@ class BlogpostsController extends Controller
 
     {
         return view('blogposts/newblog');
+    }
+
+    public function edit($id)
+
+    {
+        $blogpost = Blogpost::find($id);
+
+        return view('blogposts.edit', [
+            'blogpost' => $blogpost
+        ]);
+
+    }
+
+    public function update(Blogpost $blogpost, Request $request)
+
+    {
+        $blogpost->fill($request->all())
+            ->save();
+
+        return redirect()->route('blogposts.blogpost', $blogpost);
+    }
+
+    public function destroy($id)
+
+    {
+        Blogpost::find($id)->delete();
+
+        return redirect('/blogposts');
     }
 
     public function postCreate(Request $request)

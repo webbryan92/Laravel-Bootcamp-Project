@@ -15,11 +15,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/blogposts', 'BlogpostsController@index');
+Route::get('/blogposts', 'BlogpostsController@index')->name('blogposts');
 Route::post('/blogposts/newblog', 'BlogpostsController@postCreate');
 Route::get('/blogposts/newblog', 'BlogpostsController@create');
 Route::get('/blogposts/general', 'BlogpostsController@blogGeneral');
 Route::get('/blogposts/gunpla', 'BlogpostsController@blogGunpla');
 Route::get('/blogposts/games', 'BlogpostsController@blogGames');
-Route::get('/blogposts/{blogpost}', 'BlogpostsController@blogpost')->name('blogposts.blogpost');
-Route::get('/blogposts/{blogpost}/edit', 'BlogpostsController@edit');
+Route::get('/blogposts/{blogpost}', 'BlogpostsController@show')->name('blogposts.blogpost');
+Route::patch('/blogposts/{blogpost}', 'BlogpostsController@update');
+Route::delete('/blogposts/{blogpost}', 'BlogpostsController@destroy');
+Route::get('/blogposts/{blogpost}/edit', 'BlogpostsController@edit')->name('blogposts.edit');
+

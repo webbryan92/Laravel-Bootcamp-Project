@@ -14,6 +14,8 @@
                 </div>
                 <br>
                 <p>{{ $blogpost->body }}</p>
+
+                <a href="/blogposts/{{$blogpost->id}}/edit" class="card-link">Edit Blog</a>
             </div>
         </div>
     </div>
