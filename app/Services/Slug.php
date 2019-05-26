@@ -1,6 +1,9 @@
 <?php
 
+namespace App\Services;
+
 use App\Blogpost;
+use Illuminate\Support\Str;
 
 class Slug
 {

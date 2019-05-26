@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Blogpost;
+use App\Services\Slug;
 use Illuminate\Http\Request;
 
 class BlogpostsController extends Controller
@@ -12,8 +13,16 @@ class BlogpostsController extends Controller
     {
         $blogposts = Blogpost::all();
 
+        //order a query by created_at, get the collection,
+        //get first of each category
+        $featured = Blogpost::query()
+                        ->orderBy('created_at', 'DESC' )
+                        ->get()
+                        ->unique('category');
+
         return view('blogposts/index', [
-            'blogposts' => $blogposts
+            'blogposts' => $blogposts,
+            'featured' => $featured
         ]);
     }
 
@@ -90,8 +99,9 @@ class BlogpostsController extends Controller
 
     public function postCreate(Request $request)
     {
+        $slug = new Slug();
         $blogpost = new Blogpost();
-        $blogpost->slug = "placeholder";
+        $blogpost->slug = $slug->createSlug($request->title);
         $blogpost->fill(
             $request->except('_token')
         )->save();
