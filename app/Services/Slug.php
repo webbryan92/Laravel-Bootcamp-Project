@@ -17,6 +17,7 @@ class Slug
     {
         // Normalize the title
         $slug = Str::slug($title);
+        $slug = Str::limit($slug, 25);
 
         // Get any that could possibly be related.
         // This cuts the queries down by doing it once.
