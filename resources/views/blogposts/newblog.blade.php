@@ -35,5 +35,18 @@
         </div>
         <hr class="mb-4">
         <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
+
+        <br>
+        @if ($errors->any())
+            <div class="alert alert-danger" role="alert">
+                <p class="font-weight-bold">Error(s):</p>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
     </form>
+
 @endsection

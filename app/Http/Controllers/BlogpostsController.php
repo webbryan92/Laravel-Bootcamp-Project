@@ -29,30 +29,48 @@ class BlogpostsController extends Controller
     public function blogGeneral()
 
     {
+        $featured = Blogpost::query()
+            ->orderBy('created_at', 'DESC' )
+            ->get()
+            ->unique('category');
+
         $blogposts = Blogpost::all()->where('category', 'General');
 
         return view('blogposts/index', [
-            'blogposts' => $blogposts
+            'blogposts' => $blogposts,
+            'featured' => $featured
         ]);
     }
 
     public function blogGunpla()
 
     {
+        $featured = Blogpost::query()
+            ->orderBy('created_at', 'DESC' )
+            ->get()
+            ->unique('category');
+
         $blogposts = Blogpost::all()->where('category', 'Gunpla');
 
         return view('blogposts/index', [
-            'blogposts' => $blogposts
+            'blogposts' => $blogposts,
+            'featured' => $featured
         ]);
     }
 
     public function blogGames()
 
     {
+        $featured = Blogpost::query()
+            ->orderBy('created_at', 'DESC' )
+            ->get()
+            ->unique('category');
+
         $blogposts = Blogpost::all()->where('category', 'Games');
 
         return view('blogposts/index', [
-            'blogposts' => $blogposts
+            'blogposts' => $blogposts,
+            'featured' => $featured
         ]);
     }
 
@@ -99,11 +117,18 @@ class BlogpostsController extends Controller
 
     public function postCreate(Request $request)
     {
+        request()->validate([
+            'title' => ['required', 'min:3'],
+            'category' => 'required',
+            'description' => ['required', 'min:5'],
+            'body' => ['required', 'min:5']
+        ]);
+
         $slug = new Slug();
         $blogpost = new Blogpost();
         $blogpost->slug = $slug->createSlug($request->title);
         $blogpost->fill(
-            $request->except('_token')
+            $request->except('_token', 'slug')
         )->save();
 
         return redirect('/blogposts')
