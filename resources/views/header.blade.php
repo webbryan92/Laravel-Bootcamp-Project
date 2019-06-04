@@ -17,11 +17,11 @@
                     Categories
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/blogposts/general">General</a>
+                    <a class="dropdown-item" href="{{ route('blogposts.blogpost', 'General') }}">General</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/blogposts/gunpla">Gunpla</a>
+                    <a class="dropdown-item" href="{{ route('blogposts.blogpost', 'Gunpla') }}">Gunpla</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/blogposts/games">Games</a>
+                    <a class="dropdown-item" href="{{ route('blogposts.blogpost', 'Games') }}">Games</a>
                 </div>
             </li>
             <li class="nav-item">

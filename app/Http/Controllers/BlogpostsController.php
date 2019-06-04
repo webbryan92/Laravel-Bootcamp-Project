@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 class BlogpostsController extends Controller
 {
     public function index()
-
     {
         $blogposts = Blogpost::all();
 
@@ -25,55 +24,19 @@ class BlogpostsController extends Controller
             'featured' => $featured
         ]);
     }
-
-    public function blogGeneral()
-
+    public function blogCategory($category)
     {
         $featured = Blogpost::query()
             ->orderBy('created_at', 'DESC' )
             ->get()
             ->unique('category');
-
-        $blogposts = Blogpost::all()->where('category', 'General');
+        $blogposts = Blogpost::all()->where('category', $category);
 
         return view('blogposts/index', [
             'blogposts' => $blogposts,
             'featured' => $featured
         ]);
     }
-
-    public function blogGunpla()
-
-    {
-        $featured = Blogpost::query()
-            ->orderBy('created_at', 'DESC' )
-            ->get()
-            ->unique('category');
-
-        $blogposts = Blogpost::all()->where('category', 'Gunpla');
-
-        return view('blogposts/index', [
-            'blogposts' => $blogposts,
-            'featured' => $featured
-        ]);
-    }
-
-    public function blogGames()
-
-    {
-        $featured = Blogpost::query()
-            ->orderBy('created_at', 'DESC' )
-            ->get()
-            ->unique('category');
-
-        $blogposts = Blogpost::all()->where('category', 'Games');
-
-        return view('blogposts/index', [
-            'blogposts' => $blogposts,
-            'featured' => $featured
-        ]);
-    }
-
     public function show(Blogpost $blogpost)
     {
         return view('blogposts/blogpost', [
