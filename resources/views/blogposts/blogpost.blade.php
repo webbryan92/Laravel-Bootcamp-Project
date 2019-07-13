@@ -8,6 +8,7 @@
             <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="post-heading">
                     <h1>{{ $blogpost->title }}</h1>
+                    <h2 class="subheading">Posted In:{{ $blogpost->category->category }}</h2>
                     <h2 class="subheading">{{ $blogpost->description }}</h2>
                     <span class="meta">Posted
                     on {{ $blogpost->created_at }}</span>

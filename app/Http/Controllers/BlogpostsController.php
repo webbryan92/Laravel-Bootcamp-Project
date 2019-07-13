@@ -90,8 +90,9 @@ class BlogpostsController extends Controller
         $slug = new Slug();
         $blogpost = new Blogpost();
         $blogpost->slug = $slug->createSlug($request->title);
+        $blogpost->category->category;
         $blogpost->fill(
-            $request->except('_token', 'slug')
+            $request->except('_token', 'slug', 'category')
         )->save();
 
         return redirect('/blogposts')
